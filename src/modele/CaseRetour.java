@@ -8,5 +8,6 @@ public class CaseRetour extends CaseSpeciale {
     
     @Override
     public void appliquerEffet(Pirate pirate, De de) {
-	}
+        pirate.setPosition(pirate.getPositionPrecedente());
+    }
 }

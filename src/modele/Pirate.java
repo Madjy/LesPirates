@@ -30,6 +30,10 @@ public class Pirate {
     		this.coeurs++;
     	}
     }
+    
+    public void getPositionPrecedente() {
+    	
+    }
 
     public boolean estVivant() {
         return this.coeurs > 0;
