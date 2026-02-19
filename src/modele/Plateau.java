@@ -28,3 +28,4 @@ public class Plateau {
     public Case getCaseAt(int index)  { return cases[index]; }
     public Pirate[] getPirates()      { return pirates; }
     public int getNbCases()           { return NB_CASES; }
+}
