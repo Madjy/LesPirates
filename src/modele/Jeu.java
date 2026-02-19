@@ -21,5 +21,14 @@ public class Jeu {
         int de2 = de.getValeur();
         
         pirate.deplacer(de1 + de2);
+        
+        //Si le déplacement dépasse la dernière case, on repositionne le pirate sur la dernière case
+        if (pirate.getPosition() >= plateau.getNbCases()) {
+            pirate.setPosition(plateau.getNbCases());
+        }
+        
+        tour = (tour + 1) % 2;
     }
+    
+    
 }
