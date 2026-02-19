@@ -34,7 +34,7 @@ public class Plateau {
             }
         }
         return false;
-    }
+    }	
 
     public Pirate[] getPirates(){ 
     	return pirates; 

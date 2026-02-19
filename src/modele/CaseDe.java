@@ -8,5 +8,11 @@ public class CaseDe extends CaseSpeciale {
     
     @Override
     public void appliquerEffet(Pirate pirate, De de) {
+    	de.lancer();
+    	if (de.getValeur() <= 3) {
+    		pirate.perdreCoeur();
+    	} else {
+    		pirate.gagnerCoeur();
+    	}
 	}
 }

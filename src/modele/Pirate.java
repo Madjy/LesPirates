@@ -1,7 +1,7 @@
 package modele;
 
 public class Pirate {
-    private static final int NB_COEURS_INITIAL = 5;
+    private static final int NB_COEURS = 5;
 
     private String nom;
     private Couleur couleur;
@@ -11,7 +11,7 @@ public class Pirate {
     public Pirate(String nom, Couleur couleur) {
         this.nom = nom;
         this.couleur = couleur;
-        this.coeurs = NB_COEURS_INITIAL;
+        this.coeurs = NB_COEURS;
         this.position = 0;
     }
 
@@ -23,6 +23,12 @@ public class Pirate {
         if (this.coeurs > 0) {
             this.coeurs--;
         }
+    }
+    
+    public void gagnerCoeur() {
+    	if (this.coeurs < 6) {
+    		this.coeurs++;
+    	}
     }
 
     public boolean estVivant() {
