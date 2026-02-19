@@ -10,4 +10,7 @@ public class Case {
     public int getNumero() {
         return numero;
     }
+    
+    public void appliquerEffet(Pirate pirate, De de) {
+    }
 }
