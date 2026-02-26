@@ -7,6 +7,7 @@ public class Pirate {
     private Couleur couleur;
     private int coeurs;
     private int position;
+    private int positionPrecedente=0;
 
     public Pirate(String nom, Couleur couleur) {
         this.nom = nom;
@@ -16,6 +17,7 @@ public class Pirate {
     }
 
     public void deplacer(int nbCases) {
+    	this.positionPrecedente = this.position;
         this.position += nbCases;
     }
 
@@ -31,9 +33,7 @@ public class Pirate {
     	}
     }
     
-    public void getPositionPrecedente() {
-    	
-    }
+    public int getPositionPrecedente() { return positionPrecedente; }
 
     public boolean estVivant() {
         return this.coeurs > 0;
