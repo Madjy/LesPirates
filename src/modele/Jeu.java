@@ -11,7 +11,7 @@ public class Jeu {
     	this.tour = 0;
     }
     
-    public void jouerTour() {
+    public void jouerTour(int tour) {
         Pirate pirate = plateau.getPirates()[tour];
         
         de.lancer();
@@ -27,8 +27,12 @@ public class Jeu {
             pirate.setPosition(plateau.getNbCases());
         }
         
+        plateau.getCaseSpeciale(pirate.getPosition()).appliquerEffet(pirate, de);
+        
         tour = (tour + 1) % 2;
     }
     
-    
+    public void main() {
+    	jouerTour(tour);
+    }
 }
