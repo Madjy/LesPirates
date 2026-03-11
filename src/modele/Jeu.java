@@ -11,7 +11,7 @@ public class Jeu {
         this.tour = 0;
     }
 
-    public void jouerTour() {
+    public ResultatTour jouerTour() {
         Pirate pirate = plateau.getPirates()[this.tour];
 
         de.lancer();
@@ -25,12 +25,22 @@ public class Jeu {
             pirate.setPosition(plateau.getNbCases());
         }
 
+        ResultatTour resultat = ResultatTour.RIEN;
         CaseSpeciale caseSpeciale = plateau.getCaseSpeciale(pirate.getPosition());
         if (caseSpeciale != null) {
+            int coeurAvant = pirate.getCoeurs();
             caseSpeciale.appliquerEffet(pirate, de);
+            if (pirate.getPosition() == pirate.getPositionPrecedente()) {
+                resultat = ResultatTour.CASE_RETOUR;
+            } else if (pirate.getCoeurs() < coeurAvant) {
+                resultat = ResultatTour.COEUR_PERDU;
+            } else if (pirate.getCoeurs() > coeurAvant) {
+                resultat = ResultatTour.COEUR_GAGNE;
+            }
         }
 
         this.tour = (this.tour + 1) % 2;
+        return resultat;
     }
 
     public boolean estTerminee() {
@@ -39,10 +49,18 @@ public class Jeu {
 
     public Pirate getVainqueur() {
         Pirate[] pirates = plateau.getPirates();
-        if (pirates[0].getPosition() >= plateau.getNbCases()) return pirates[0];
-        if (pirates[1].getPosition() >= plateau.getNbCases()) return pirates[1];
-        if (!pirates[0].estVivant()) return pirates[1];
-        if (!pirates[1].estVivant()) return pirates[0];
+        if (pirates[0].getPosition() >= plateau.getNbCases()) {
+        	return pirates[0];
+        }
+        if (pirates[1].getPosition() >= plateau.getNbCases()) {
+        	return pirates[1];
+        }
+        if (!pirates[0].estVivant()) {
+        	return pirates[1];
+        }
+        if (!pirates[1].estVivant()) {
+        	return pirates[0];
+        }
         return null;
     }
 

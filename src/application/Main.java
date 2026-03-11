@@ -2,6 +2,8 @@ package application;
 
 import modele.Jeu;
 import vue.Affichage;
+import modele.ResultatTour;
+import modele.Pirate;
 
 public class Main {
 
@@ -11,8 +13,10 @@ public class Main {
 
         while (!jeu.estTerminee()) {
             affichage.afficherEtat(jeu);
-            affichage.attendreTour(jeu.getPlateau().getPirates()[jeu.getTour()]);
-            jeu.jouerTour();
+            Pirate joueurActuel = jeu.getPlateau().getPirates()[jeu.getTour()];
+            affichage.attendreTour(joueurActuel);
+            ResultatTour resultat = jeu.jouerTour();
+            affichage.afficherResultatTour(joueurActuel, resultat);
         }
 
         affichage.afficherVainqueur(jeu.getVainqueur());
