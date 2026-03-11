@@ -7,17 +7,18 @@ public class Pirate {
     private Couleur couleur;
     private int coeurs;
     private int position;
-    private int positionPrecedente=0;
+    private int positionPrecedente;
 
     public Pirate(String nom, Couleur couleur) {
         this.nom = nom;
         this.couleur = couleur;
         this.coeurs = NB_COEURS;
         this.position = 0;
+        this.positionPrecedente = 0;
     }
 
     public void deplacer(int nbCases) {
-    	this.positionPrecedente = this.position;
+        this.positionPrecedente = this.position;
         this.position += nbCases;
     }
 
@@ -26,22 +27,25 @@ public class Pirate {
             this.coeurs--;
         }
     }
-    
+
     public void gagnerCoeur() {
-    	if (this.coeurs < 6) {
-    		this.coeurs++;
-    	}
+        if (this.coeurs < NB_COEURS) {
+            this.coeurs++;
+        }
     }
-    
-    public int getPositionPrecedente() { return positionPrecedente; }
 
     public boolean estVivant() {
         return this.coeurs > 0;
     }
 
-    public String getNom()      { return nom; }
-    public Couleur getCouleur() { return couleur; }
-    public int getCoeurs()      { return coeurs; }
-    public int getPosition()    { return position; }
-    public void setPosition(int position) { this.position = position; }
+    public String getNom()                 { return nom; }
+    public Couleur getCouleur()            { return couleur; }
+    public int getCoeurs()                 { return coeurs; }
+    public int getPosition()               { return position; }
+    public int getPositionPrecedente()     { return positionPrecedente; }
+
+    public void setPosition(int position) {
+        this.positionPrecedente = this.position;
+        this.position = position;
+    }
 }

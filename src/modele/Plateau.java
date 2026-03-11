@@ -7,7 +7,7 @@ public class Plateau {
     private Pirate[] pirates;
 
     public Plateau() {
-    	//Sert à créer et positionner les cases speciales
+        this.casesSpeciales = new CaseSpeciale[8];
         this.casesSpeciales[0] = new CaseRetour(4);
         this.casesSpeciales[1] = new CaseDe(7);
         this.casesSpeciales[2] = new CaseRetour(8);
@@ -16,14 +16,12 @@ public class Plateau {
         this.casesSpeciales[5] = new CaseDe(20);
         this.casesSpeciales[6] = new CaseRetour(24);
         this.casesSpeciales[7] = new CaseDe(26);
-        
-        
-       
+
         this.pirates = new Pirate[2];
         this.pirates[0] = new Pirate("Jack Le Borgne", Couleur.ROUGE);
         this.pirates[1] = new Pirate("Bill Jambe De Bois", Couleur.BLEU);
     }
-    
+
     public CaseSpeciale getCaseSpeciale(int position) {
         for (int i = 0; i < casesSpeciales.length; i++) {
             if (casesSpeciales[i].getNumero() == position) {
@@ -40,12 +38,8 @@ public class Plateau {
             }
         }
         return false;
-    }	
+    }
 
-    public Pirate[] getPirates(){ 
-    	return pirates; 
-    	}
-    public int getNbCases(){ 
-    	return NB_CASES; 
-    	}
+    public Pirate[] getPirates() { return pirates; }
+    public int getNbCases()      { return NB_CASES; }
 }
