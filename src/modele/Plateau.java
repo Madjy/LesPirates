@@ -7,15 +7,21 @@ public class Plateau {
     private Pirate[] pirates;
 
     public Plateau() {
-        this.casesSpeciales = new CaseSpeciale[8];
-        this.casesSpeciales[0] = new CaseRetour(4);
-        this.casesSpeciales[1] = new CaseDe(7);
-        this.casesSpeciales[2] = new CaseRetour(8);
-        this.casesSpeciales[3] = new CaseDe(12);
-        this.casesSpeciales[4] = new CaseRetour(16);
-        this.casesSpeciales[5] = new CaseDe(20);
-        this.casesSpeciales[6] = new CaseRetour(24);
-        this.casesSpeciales[7] = new CaseDe(26);
+        this.casesSpeciales = new CaseSpeciale[14];
+        this.casesSpeciales[0] = new CaseRetour(2);
+        this.casesSpeciales[1] = new CaseDe(5);
+        this.casesSpeciales[2] = new CaseRetour(7);
+        this.casesSpeciales[3] = new CaseDe(10);
+        this.casesSpeciales[4] = new CaseRetour(12);
+        this.casesSpeciales[5] = new CaseDe(14);
+        this.casesSpeciales[6] = new CaseRetour(15);
+        this.casesSpeciales[7] = new CaseDe(17);
+        this.casesSpeciales[8] = new CaseRetour(20);
+        this.casesSpeciales[9] = new CaseDe(21);
+        this.casesSpeciales[10] = new CaseRetour(23);
+        this.casesSpeciales[11] = new CaseDe(25);
+        this.casesSpeciales[12] = new CaseRetour(27);
+        this.casesSpeciales[13] = new CaseDe(29);
 
         this.pirates = new Pirate[2];
         this.pirates[0] = new Pirate("Jack Le Borgne", Couleur.ROUGE);
