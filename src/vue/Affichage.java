@@ -1,60 +1,48 @@
 package vue;
 
-import modele.Jeu;
-import modele.Pirate;
+import java.util.Scanner;
 import modele.ResultatTour;
 
-public class Affichage implements IAffichage{
+public class Affichage implements IAffichage {
 
-    public void afficherCasesRestantes(Pirate pirate, int nbCases) {
-    	System.out.println(pirate.getNom() + " doit faire exactement " + (nbCases - pirate.getPosition()) + " pour gagner !");
-    }
+    private Scanner scanner;
 
-    public void attendreTour(Pirate pirate, int nbCases) {
-        System.out.println("##### Tour de " + pirate.getNom() + " #####");
-        afficherCasesRestantes(pirate, nbCases);
-        System.out.println("Appuyez sur Entree pour lancer les dés");
+    public Affichage() {
+        this.scanner = new Scanner(System.in);
     }
 
-    public void afficherEtat(Jeu jeu) {
-        Pirate[] pirates = jeu.getPlateau().getPirates();
-        afficherPirate(pirates[0]);
-        afficherPirate(pirates[1]);
+    public void attendreTour(String nomPirate, int casesRestantes) {
+        System.out.println("##### Tour de " + nomPirate + " #####");
+        System.out.println(nomPirate + " doit faire exactement " + casesRestantes + " pour gagner !");
+        System.out.println("Appuyez sur Entree pour lancer les des...");
+        scanner.nextLine();
     }
 
-    public void afficherPirate(Pirate pirate) {
-        System.out.println(pirate.getNom()
-            + " - Position : " + pirate.getPosition()
-            + " - Coeurs : " + pirate.getCoeurs());
+    public void afficherPirate(String nomPirate, int position, int coeurs) {
+        System.out.println(nomPirate + " - Position : " + position + " - Coeurs : " + coeurs);
     }
 
-    public void afficherVainqueur(Pirate pirate) {
-        System.out.println("##### " + pirate.getNom() + " a gagne ! #####");
+    public void afficherDes(int de1, int de2) {
+        System.out.println("Resultat des : " + de1 + " + " + de2 + " = " + (de1 + de2));
     }
-    
-    public void afficherLigne() {
-    	System.out.println("------------------------------------------------------------------");
-    }
-    
-    public void afficherDes(Jeu jeu) {
-    	System.out.println("Resultat dés : " + (jeu.getDe1()+jeu.getDe2()));
-    }
-    
-    public void afficherResultatTour(Pirate pirate, ResultatTour resultat) {
+
+    public void afficherResultatTour(String nomPirate, int position, ResultatTour resultat) {
         if (resultat == ResultatTour.CASE_RETOUR) {
-            System.out.println("|||||| Case retour ! |||||" + pirate.getNom() + " revient en case " + pirate.getPosition());
+            System.out.println("|||||| Case retour ! |||||| " + nomPirate + " revient en case " + position);
         } else if (resultat == ResultatTour.COEUR_PERDU) {
-            System.out.println("|||||Case malefique ! |||||" + pirate.getNom() + " perd un coeur !");
+            System.out.println("||||| Case malefique ! ||||| " + nomPirate + " perd un coeur !");
         } else if (resultat == ResultatTour.COEUR_GAGNE) {
-            System.out.println("|||||Case benefique ! ||||| " + pirate.getNom() + " gagne un coeur !");
+            System.out.println("||||| Case benefique ! ||||| " + nomPirate + " gagne un coeur !");
         } else if (resultat == ResultatTour.RETOUR_ARRIERE) {
-        	System.out.println(pirate.getNom() + " est parti trop loin ! Il revient en case " + pirate.getPosition() + " !");
+            System.out.println(nomPirate + " est parti trop loin ! Il revient en case " + position + " !");
         }
     }
 
-	@Override
-	public void afficherDes() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void afficherVainqueur(String nomPirate) {
+        System.out.println("##### " + nomPirate + " a gagne ! #####");
+    }
+
+    public void afficherLigne() {
+        System.out.println("------------------------------------------------------------------");
+    }
 }

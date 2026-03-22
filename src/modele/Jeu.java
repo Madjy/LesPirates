@@ -19,11 +19,11 @@ public class Jeu {
         Pirate pirate = plateau.getPirates()[this.tour];
 
         de.lancer();
-        int de1 = de.getValeur();
+        this.de1 = de.getValeur();
         de.lancer();
-        int de2 = de.getValeur();
+        this.de2 = de.getValeur();
 
-        pirate.deplacer(de1 + de2);
+        pirate.deplacer(this.de1 + this.de2);
 
         ResultatTour resultat = ResultatTour.RIEN;
 
@@ -31,11 +31,12 @@ public class Jeu {
             pirate.setPosition(plateau.getNbCases()-(pirate.getPosition()-plateau.getNbCases()));
             resultat = ResultatTour.RETOUR_ARRIERE;
         } else {
-            CaseSpeciale caseSpeciale = plateau.getCaseSpeciale(pirate.getPosition());
+        	CaseSpeciale caseSpeciale = plateau.getCaseSpeciale(pirate.getPosition());
             if (caseSpeciale != null) {
                 int coeurAvant = pirate.getCoeurs();
+                int positionAvant = pirate.getPosition();
                 caseSpeciale.appliquerEffet(pirate, de);
-                if (pirate.getPosition() == pirate.getPositionPrecedente()) {
+                if (pirate.getPosition() < positionAvant) {
                     resultat = ResultatTour.CASE_RETOUR;
                 } else if (pirate.getCoeurs() < coeurAvant) {
                     resultat = ResultatTour.COEUR_PERDU;

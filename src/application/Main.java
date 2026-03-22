@@ -1,30 +1,31 @@
 package application;
 
 import modele.Jeu;
-import vue.Affichage;
-import modele.ResultatTour;
 import modele.Pirate;
-import java.util.Scanner;
+import modele.ResultatTour;
+import vue.Affichage;
+import vue.IAffichage;
 
 public class Main {
-
     public static void main(String[] args) {
         Jeu jeu = new Jeu();
-        Affichage affichage = new Affichage();
-        Scanner scanner = new Scanner(System.in);
+        IAffichage affichage = new Affichage();
 
         while (!jeu.estTerminee()) {
-            affichage.afficherEtat(jeu);
-            Pirate joueurActuel = jeu.getPlateau().getPirates()[jeu.getTour()];
+            Pirate[] pirates = jeu.getPlateau().getPirates();
+            affichage.afficherPirate(pirates[0].getNom(), pirates[0].getPosition(), pirates[0].getCoeurs());
+            affichage.afficherPirate(pirates[1].getNom(), pirates[1].getPosition(), pirates[1].getCoeurs());
             affichage.afficherLigne();
-            affichage.attendreTour(joueurActuel, jeu.getPlateau().getNbCases());
-            scanner.nextLine();
+
+            Pirate joueurActuel = pirates[jeu.getTour()];
+            affichage.attendreTour(joueurActuel.getNom(), jeu.getPlateau().getNbCases() - joueurActuel.getPosition());
+
             ResultatTour resultat = jeu.jouerTour();
-            affichage.afficherDes(jeu);
-            affichage.afficherResultatTour(joueurActuel, resultat);
+            affichage.afficherDes(jeu.getDe1(), jeu.getDe2());
+            affichage.afficherResultatTour(joueurActuel.getNom(), joueurActuel.getPosition(), resultat);
+            affichage.afficherLigne();
         }
 
-        affichage.afficherVainqueur(jeu.getVainqueur());
-        scanner.close();
+        affichage.afficherVainqueur(jeu.getVainqueur().getNom());
     }
 }
